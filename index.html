@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Profile Exporter</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Google Fonts (Roboto as Proxima Nova alternative) -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        /* Light mode (default) */
+        body {
+            font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background-color: #FAFAFA;
+            /* Instagram light mode background */
+            color: #262626;
+            /* Instagram dark gray */
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Dark mode */
+        body.dark-mode {
+            background-color: #121212;
+            color: #FFFFFF;
+        }
+
+        /* Neon gradient header */
+        .header-bg {
+            background: linear-gradient(45deg, #5851DB, #C13584, #FD1D1D, #FCAF45);
+            color: #FFFFFF;
+        }
+
+        /* Header lead text to match h1 colors */
+        .header-lead {
+            color: #262626;
+            text-shadow: 0 0 5px rgba(131, 58, 180, 0.3);
+            font-size: 1.25rem;
+            font-weight: 300;
+        }
+
+        /* Button styling with neon glow */
+        .btn-primary {
+            background-color: #833AB4;
+            border-color: #833AB4;
+            box-shadow: 0 0 10px rgba(131, 58, 180, 0.7);
+            /* Neon glow */
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #FD1D1D;
+            border-color: #FD1D1D;
+            box-shadow: 0 0 15px rgba(253, 29, 29, 0.9);
+        }
+
+        /* Theme toggle button */
+        .theme-toggle {
+            color: #FFFFFF;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            padding: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            color: #FCAF45;
+            text-shadow: 0 0 8px rgba(252, 175, 69, 0.7);
+            /* Neon hover */
+        }
+
+        /* Feature card with neon border */
+        .feature-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: #FFFFFF;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border: 1px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 12px rgba(131, 58, 180, 0.5);
+            /* Neon glow */
+            border-color: #833AB4;
+        }
+
+        .dark-mode .feature-card {
+            background-color: #1C2526;
+            border: 1px solid #2C2F33;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .dark-mode .feature-card:hover {
+            box-shadow: 0 0 12px rgba(131, 58, 180, 0.7);
+        }
+
+        /* Headings with neon effect */
+        h1,
+        h2,
+        h3 {
+            font-weight: 700;
+            color: #262626;
+            text-shadow: 0 0 5px rgba(131, 58, 180, 0.3);
+            /* Subtle neon glow */
+        }
+
+        .dark-mode h1,
+        .dark-mode h2,
+        .dark-mode h3,
+        .dark-mode .header-lead {
+            color: #FFFFFF;
+            text-shadow: 0 0 8px rgba(131, 58, 180, 0.5);
+        }
+
+        .lead {
+            color: #8E8E8E;
+        }
+
+        .dark-mode .lead {
+            color: #B0B3B8;
+            /* Light gray for readability */
+        }
+
+        .text-muted {
+            color: #8E8E8E !important;
+        }
+
+        .dark-mode .text-muted {
+            color: #B0B3B8 !important;
+        }
+
+        /* Social icons with neon glow */
+        .social-icon {
+            font-size: 1.5rem;
+            margin: 0 10px;
+            color: #833AB4;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            color: #FCAF45;
+            text-shadow: 0 0 8px rgba(252, 175, 69, 0.7);
+            /* Neon orange glow */
+        }
+
+        /* Section backgrounds */
+        .bg-light-section {
+            background-color: #FAFAFA;
+        }
+
+        .dark-mode .bg-light-section {
+            background-color: #1C2526;
+        }
+
+        .bg-danger-subtle {
+            background-color: #FFF1F2 !important;
+            color: #DC3545;
+        }
+
+        .dark-mode .bg-danger-subtle {
+            background-color: #2C1A1D !important;
+            color: #FF6B6B;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #E5E5E5;
+            /* Slightly darker for contrast */
+            padding: 1.5rem 0;
+            /* Increased padding */
+        }
+
+        .dark-mode footer {
+            background-color: #1A1A1A;
+            /* Improved contrast */
+        }
+
+        footer p {
+            color: #262626;
+            text-shadow: 0 0 4px rgba(255, 255, 255, 0.3);
+            /* Subtle glow for readability */
+            margin-bottom: 0.5rem;
+            /* Increased spacing */
+        }
+
+        .dark-mode footer p {
+            color: #FFFFFF;
+            text-shadow: 0 0 6px rgba(131, 58, 180, 0.5);
+            /* Neon purple glow */
+        }
+
+        footer a {
+            color: #262626;
+            text-decoration: underline;
+            /* Make links look like links */
+            margin: 0 5px;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #833AB4;
+            text-shadow: 0 0 6px rgba(131, 58, 180, 0.5);
+            /* Purple glow on hover */
+        }
+
+        .dark-mode footer a {
+            color: #FFFFFF;
+            text-decoration: underline;
+        }
+
+        .dark-mode footer a:hover {
+            color: #FCAF45;
+            text-shadow: 0 0 6px rgba(252, 175, 69, 0.7);
+            /* Orange glow on hover */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .display-4 {
+                font-size: 2.5rem;
+            }
+
+            .lead {
+                font-size: 1rem;
+            }
+
+            .btn-lg {
+                padding: 0.5rem 1rem;
+                font-size: 1rem;
+            }
+
+            .social-icon {
+                font-size: 1.25rem;
+                margin: 0 8px;
+            }
+
+            .theme-toggle {
+                font-size: 1.25rem;
+            }
+
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .display-4 {
+                font-size: 2rem;
+            }
+
+            .card-body {
+                padding: 1rem;
+            }
+
+            .social-icon {
+                font-size: 1rem;
+                margin: 0 5px;
+            }
+
+            .theme-toggle {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header-bg text-white py-5">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="text-center flex-grow-1">
+                <h1 class="display-4 fw-bold mb-3">Transform Your Instagram with Instagram Profile Exporter</h1>
+                <p class="header-lead">Showcase your Instagram content in a professional, eye-catching PDF!</p>
+            </div>
+            <button class="theme-toggle" id="theme-toggle" title="Toggle Theme">
+                <i class="bi bi-sun-fill"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-5 bg-light-section">
+        <div class="container text-center">
+            <h2 class="fw-bold mb-4">Create Your Visual Masterpiece</h2>
+            <p class="lead mb-5 mx-auto" style="max-width: 600px;">
+                Whether you're a creative, business, or just want to preserve memories, Instagram Profile Exporter
+                transforms your public Instagram posts into a sleek, beautifully formatted PDF.
+            </p>
+            <a href="#contact" class="btn btn-primary btn-lg">Get Started Now</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="fw-bold text-center mb-5">Why Choose This Service?</h2>
+            <div class="row g-4">
+                <div class="col-12 col-md-4 col-sm-6">
+                    <div class="card feature-card h-100 shadow-sm">
+                        <div class="card-body text-center">
+                            <h3 class="card-title fw-semibold mb-3">Affordable</h3>
+                            <p class="card-text text-muted">Only ₹1 per second – you control the cost!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-sm-6">
+                    <div class="card feature-card h-100 shadow-sm">
+                        <div class="card-body text-center">
+                            <h3 class="card-title fw-semibold mb-3">Lightning-Fast</h3>
+                            <p class="card-text text-muted">Processes ~2 images per second for quick results.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-sm-12">
+                    <div class="card feature-card h-100 shadow-sm">
+                        <div class="card-body text-center">
+                            <h3 class="card-title fw-semibold mb-3">Tailored to You</h3>
+                            <p class="card-text text-muted">Extract an entire public profile or select a portion based
+                                on your budget.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="text-center text-muted mt-4">
+                <strong>Example:</strong> With a ₹100 budget, I'll process your profile for 100 seconds, delivering
+                ~200 high-quality images in a polished PDF.
+            </p>
+        </div>
+    </section>
+
+    <!-- Note Section -->
+    <section class="py-5 bg-danger-subtle">
+        <div class="container text-center">
+            <h3 class="fw-semibold mb-3">Important Note</h3>
+            <p class="text-muted">Only public Instagram profiles are supported. Private or locked accounts cannot be
+                processed.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 bg-light-section">
+        <div class="container text-center">
+            <h2 class="fw-bold mb-3">Ready to Elevate Your Instagram Game?</h2>
+            <p class="lead mb-4 mx-auto" style="max-width: 600px;">
+                Contact me today to get started or request a free demo preview! Let’s turn your feed into a professional
+                masterpiece with Instagram Profile Exporter.
+            </p>
+            <div class="mb-4">
+                <a href="https://wa.me/919845403046" target="_blank" class="social-icon" title="WhatsApp">
+                    <i class="bi bi-whatsapp"></i>
+                </a>
+            </div>
+            <a href="https://wa.me/919845403046" target="_blank" class="btn btn-primary btn-lg">Contact via WhatsApp</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-white py-4">
+        <div class="container text-center">
+            <p class="mb-1">© <span id="copyright-year"></span> Instagram Profile Exporter. All rights reserved.</p>
+            <p>
+                <a href="https://g-h-0-s-t.github.io/Privacy_Policy_For_InstaProfileToPDF_Chrome_Plugin/"
+                    target="_blank">Privacy Policy</a> |
+                Made with ❤️ by Cyberbatman : <a href="https://x.com/cyberbatman" target="_blank">x.com/cyberbatman</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.min.js"
+        integrity="sha384-RuyvpeZCxMJCqVUGFI0Do1mQrods/hhxYlcVfGPOfQtPJh0JCw12tUAZ/Mv10S7D"
+        crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            // Set dynamic copyright year
+            $('#copyright-year').text(new Date().getFullYear());
+
+            // Theme toggle functionality
+            const toggleButton = $('#theme-toggle');
+            const body = $('body');
+            const icon = toggleButton.find('i');
+
+            // Check saved theme in localStorage
+            if (localStorage.getItem('theme') === 'dark') {
+                body.addClass('dark-mode');
+                icon.removeClass('bi-sun-fill').addClass('bi-moon-stars-fill');
+            }
+
+            // Toggle theme on click
+            toggleButton.click(function () {
+                body.toggleClass('dark-mode');
+                if (body.hasClass('dark-mode')) {
+                    icon.removeClass('bi-sun-fill').addClass('bi-moon-stars-fill');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    icon.removeClass('bi-moon-stars-fill').addClass('bi-sun-fill');
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+
+            // Smooth scroll for anchor links
+            $('a[href*="#"]').not('[href="#"]').click(function (event) {
+                if (
+                    location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') &&
+                    location.hostname === this.hostname
+                ) {
+                    event.preventDefault();
+                    var target = $(this.hash);
+                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                    if (target.length) {
+                        $('html, body').animate({
+                            scrollTop: target.offset().top
+                        }, 1000);
+                        return false;
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
