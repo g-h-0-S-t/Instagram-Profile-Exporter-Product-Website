@@ -15,6 +15,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
         /* Light mode (default) */
         body {
             font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
@@ -408,24 +412,6 @@
                 } else {
                     icon.removeClass('bi-moon-stars-fill').addClass('bi-sun-fill');
                     localStorage.setItem('theme', 'light');
-                }
-            });
-
-            // Smooth scroll for anchor links
-            $('a[href*="#"]').not('[href="#"]').click(function (event) {
-                if (
-                    location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') &&
-                    location.hostname === this.hostname
-                ) {
-                    event.preventDefault();
-                    var target = $(this.hash);
-                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-                    if (target.length) {
-                        $('html, body').animate({
-                            scrollTop: target.offset().top
-                        }, 1000);
-                        return false;
-                    }
                 }
             });
         });
