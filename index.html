@@ -6,16 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instagram Profile Exporter</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <!-- Bootstrap CSS -->
+    <!-- 
+        Bootstrap CSS 
+        Used for responsive design and UI components
+    -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
-    <!-- Bootstrap Icons -->
+    <!-- 
+        Bootstrap Icons 
+        Provides icon set for UI elements
+    -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <!-- Google Fonts (Roboto as Proxima Nova alternative) -->
+    <!-- 
+        Google Fonts (Roboto) 
+        Main font for the website
+    -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
     <!-- Custom CSS -->
     <style>
+        /* 
+            Base styles for the website 
+            Includes scroll behavior, body styles, and dark mode
+        */
         html {
             scroll-behavior: smooth;
         }
@@ -32,6 +45,9 @@
             color: #FFFFFF;
         }
 
+        /* 
+            Header styles with Instagram gradient
+        */
         .header-bg {
             background: linear-gradient(45deg, #5851DB, #C13584, #FD1D1D, #FCAF45);
             color: #FFFFFF;
@@ -44,6 +60,9 @@
             font-weight: 300;
         }
 
+        /* 
+            Button styles with hover effects
+        */
         .btn-primary {
             background-color: #833AB4;
             border-color: #833AB4;
@@ -57,6 +76,9 @@
             box-shadow: 0 0 15px rgba(253, 29, 29, 0.9);
         }
 
+        /* 
+            Theme toggle button styles
+        */
         .theme-toggle {
             color: #FFFFFF;
             background: none;
@@ -71,6 +93,9 @@
             text-shadow: 0 0 8px rgba(252, 175, 69, 0.7);
         }
 
+        /* 
+            Feature card styles with hover effects
+        */
         .feature-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             background-color: #FFFFFF;
@@ -94,6 +119,9 @@
             box-shadow: 0 0 12px rgba(131, 58, 180, 0.7);
         }
 
+        /* 
+            Heading styles with text shadows
+        */
         h1,
         h2,
         h3 {
@@ -110,6 +138,9 @@
             text-shadow: 0 0 8px rgba(131, 58, 180, 0.5);
         }
 
+        /* 
+            Text styles for lead and muted text
+        */
         .lead {
             color: #8E8E8E;
         }
@@ -126,6 +157,9 @@
             color: #B0B3B8 !important;
         }
 
+        /* 
+            Social icon styles
+        */
         .social-icon {
             font-size: 1.5rem;
             margin: 0 10px;
@@ -138,6 +172,9 @@
             text-shadow: 0 0 8px rgba(252, 175, 69, 0.7);
         }
 
+        /* 
+            Section background styles
+        */
         .bg-light-section {
             background-color: #FAFAFA;
         }
@@ -156,6 +193,9 @@
             color: #FF6B6B;
         }
 
+        /* 
+            Footer styles
+        */
         footer {
             background-color: #E5E5E5;
             padding: 1.5rem 0;
@@ -198,6 +238,9 @@
             text-shadow: 0 0 6px rgba(252, 175, 69, 0.7);
         }
 
+        /* 
+            Responsive styles for various screen sizes
+        */
         @media (max-width: 768px) {
             .display-4 {
                 font-size: 2.5rem;
@@ -249,11 +292,110 @@
         .max-600 {
             max-width: 600px;
         }
+
+        /* 
+            PDF Viewer Styles
+            Container for the PDF viewer with controls
+        */
+        .pdf-viewer-container {
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            position: relative;
+        }
+
+        .dark-mode .pdf-viewer-container {
+            background-color: #1C2526;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* 
+            PDF control bar styles
+        */
+        .pdf-controls {
+            background-color: #f8f9fa;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 1px solid #dee2e6;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .dark-mode .pdf-controls {
+            background-color: #1a1a1a;
+            border-bottom: 1px solid #333;
+        }
+
+        .pdf-controls button {
+            margin: 0 2px;
+        }
+
+        /* 
+            PDF viewer area styles
+        */
+        .pdf-viewer {
+            width: 100%;
+            min-height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f0f0f0;
+            overflow: auto;
+        }
+
+        .dark-mode .pdf-viewer {
+            background: #2c2c2c;
+        }
+
+        .pdf-viewer canvas {
+            max-width: 100%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin: 10px auto;
+        }
+
+        /* 
+            PDF status bar styles
+        */
+        .pdf-status {
+            padding: 10px;
+            text-align: center;
+            background-color: #f8f9fa;
+            border-top: 1px solid #dee2e6;
+            font-size: 14px;
+            color: #6c757d;
+        }
+
+        .dark-mode .pdf-status {
+            background-color: #1a1a1a;
+            border-top: 1px solid #333;
+            color: #b0b3b8;
+        }
+
+        /* 
+            PDF loader styles
+        */
+        .pdf-loader {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .spinner-border {
+            width: 3rem;
+            height: 3rem;
+        }
     </style>
 </head>
 
 <body>
-    <!-- Header -->
+    <!-- Header Section -->
     <header class="header-bg text-white py-5">
         <div class="container d-flex justify-content-between align-items-center">
             <div class="text-center flex-grow-1">
@@ -317,6 +459,56 @@
         </div>
     </section>
 
+    <!-- 
+        PDF Viewer Section 
+        Added to showcase the generated PDF
+    -->
+    <section class="py-5 bg-light-section">
+        <div class="container text-center">
+            <h2 class="fw-bold mb-3">See It In Action</h2>
+            <p class="lead mb-4 mx-auto max-600">
+                Preview a sample PDF generated by Instagram Profile Exporter
+            </p>
+
+            <div class="pdf-viewer-container">
+                <div class="pdf-controls">
+                    <button class="btn btn-sm btn-outline-secondary" id="prev-page">
+                        <i class="bi bi-arrow-left"></i> Prev
+                    </button>
+                    <span class="mx-2">
+                        Page <span id="page-num">1</span> of <span id="page-count">...</span>
+                    </span>
+                    <button class="btn btn-sm btn-outline-secondary" id="next-page">
+                        Next <i class="bi bi-arrow-right"></i>
+                    </button>
+                    <button class="btn btn-sm btn-outline-secondary ms-2" id="zoom-out">
+                        <i class="bi bi-zoom-out"></i>
+                    </button>
+                    <button class="btn btn-sm btn-outline-secondary" id="zoom-in">
+                        <i class="bi bi-zoom-in"></i>
+                    </button>
+                    <button class="btn btn-sm btn-outline-primary ms-2" id="download-pdf">
+                        <i class="bi bi-download"></i> Download
+                    </button>
+                </div>
+
+                <div class="pdf-viewer">
+                    <div class="pdf-loader" id="pdf-loader">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <p class="mt-3">Loading PDF preview...</p>
+                    </div>
+                    <canvas id="pdf-render"></canvas>
+                </div>
+
+                <div class="pdf-status">
+                    <span id="pdf-title">Sample_Instagram_Export.pdf</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Note Section -->
     <section class="py-5 bg-danger-subtle">
         <div class="container text-center">
@@ -357,7 +549,10 @@
         </div>
     </footer>
 
-    <!-- jQuery and Bootstrap JS -->
+    <!-- 
+        jQuery and Bootstrap JS 
+        Required for Bootstrap components and DOM manipulation
+    -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
@@ -366,7 +561,26 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.min.js"
         integrity="sha384-RuyvpeZCxMJCqVUGFI0Do1mQrods/hhxYlcVfGPOfQtPJh0JCw12tUAZ/Mv10S7D"
         crossorigin="anonymous"></script>
+
+    <!-- 
+        PDF.js Library 
+        Used for rendering PDF files in the browser
+        Version 3.4.120 from CDN
+    -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
     <script>
+        /*
+            Set worker path for PDF.js
+            The worker is required for processing PDF documents
+        */
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
+    </script>
+
+    <script>
+        /*
+            Main JavaScript functionality
+            Includes theme toggling and PDF viewer implementation
+        */
         $(document).ready(function () {
             // Set dynamic copyright year
             $('#copyright-year').text(new Date().getFullYear());
@@ -376,13 +590,19 @@
             const body = $('body');
             const icon = toggleButton.find('i');
 
-            // Check saved theme in localStorage
+            /*
+                Check saved theme in localStorage
+                Preserves user's theme preference across sessions
+            */
             if (localStorage.getItem('theme') === 'dark') {
                 body.addClass('dark-mode');
                 icon.removeClass('bi-sun-fill').addClass('bi-moon-stars-fill');
             }
 
-            // Toggle theme on click
+            /*
+                Toggle theme on click
+                Switches between light and dark mode
+            */
             toggleButton.click(function () {
                 body.toggleClass('dark-mode');
                 if (body.hasClass('dark-mode')) {
@@ -392,6 +612,183 @@
                     icon.removeClass('bi-moon-stars-fill').addClass('bi-sun-fill');
                     localStorage.setItem('theme', 'light');
                 }
+            });
+
+            /*
+                PDF Viewer Functionality
+                Uses PDF.js to render PDF documents in the browser
+            */
+
+            /*
+                IMPORTANT: 
+                Replace this URL with the actual path to your PDF file
+                This can be either:
+                  - Relative path: 'sample.pdf'
+                  - Absolute path: '/path/to/sample.pdf'
+                  - Full URL: 'https://example.com/sample.pdf' (requires CORS)
+            */
+            const pdfPath = './foodblog.pdf';
+
+            /*
+                PDF viewer variables
+                Maintains state of the PDF document
+            */
+            let pdfDoc = null,
+                pageNum = 1,
+                pageRendering = false,
+                pageNumPending = null,
+                scale = 1.2;
+
+            /*
+                Canvas setup
+                Used for rendering PDF pages
+            */
+            const canvas = document.getElementById('pdf-render');
+            const ctx = canvas.getContext('2d');
+            const loader = document.getElementById('pdf-loader');
+
+            /*
+                Render a specific page of the PDF
+                num: Page number to render (1-indexed)
+            */
+            function renderPage(num) {
+                pageRendering = true;
+
+                // Show loader while rendering
+                loader.style.display = 'flex';
+                canvas.style.display = 'none';
+
+                /*
+                    Get the PDF page and render it
+                    Uses PDF.js API to get page and render to canvas
+                */
+                pdfDoc.getPage(num).then(function (page) {
+                    const viewport = page.getViewport({ scale: scale });
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
+
+                    // Render context for the PDF page
+                    const renderContext = {
+                        canvasContext: ctx,
+                        viewport: viewport
+                    };
+
+                    const renderTask = page.render(renderContext);
+
+                    /*
+                        Handle rendering completion
+                        Updates UI after page is rendered
+                    */
+                    renderTask.promise.then(function () {
+                        pageRendering = false;
+
+                        // Hide loader and show canvas
+                        loader.style.display = 'none';
+                        canvas.style.display = 'block';
+
+                        // Update page counters
+                        document.getElementById('page-num').textContent = num;
+
+                        // Enable/disable navigation buttons
+                        document.getElementById('prev-page').disabled = num <= 1;
+                        document.getElementById('next-page').disabled = num >= pdfDoc.numPages;
+                    });
+                });
+
+                // Update page number display immediately
+                document.getElementById('page-num').textContent = num;
+            }
+
+            /*
+                Queue rendering of a new page
+                Handles concurrent rendering requests
+            */
+            function queueRenderPage(num) {
+                if (pageRendering) {
+                    pageNumPending = num;
+                } else {
+                    renderPage(num);
+                }
+            }
+
+            /*
+                Previous page button handler
+                Decrements page number and renders previous page
+            */
+            document.getElementById('prev-page').addEventListener('click', function () {
+                if (pageNum <= 1) return;
+                pageNum--;
+                queueRenderPage(pageNum);
+            });
+
+            /*
+                Next page button handler
+                Increments page number and renders next page
+            */
+            document.getElementById('next-page').addEventListener('click', function () {
+                if (pageNum >= pdfDoc.numPages) return;
+                pageNum++;
+                queueRenderPage(pageNum);
+            });
+
+            /*
+                Zoom in button handler
+                Increases scale and re-renders current page
+            */
+            document.getElementById('zoom-in').addEventListener('click', function () {
+                scale += 0.1;
+                queueRenderPage(pageNum);
+            });
+
+            /*
+                Zoom out button handler
+                Decreases scale and re-renders current page
+            */
+            document.getElementById('zoom-out').addEventListener('click', function () {
+                if (scale > 0.5) {
+                    scale -= 0.1;
+                    queueRenderPage(pageNum);
+                }
+            });
+
+            /*
+                Download button handler
+                Creates a temporary link to download the PDF
+            */
+            document.getElementById('download-pdf').addEventListener('click', function () {
+                const link = document.createElement('a');
+                link.href = pdfPath;
+                link.download = 'Sample_Instagram_Export.pdf';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            });
+
+            /*
+                Load the PDF document
+                Uses PDF.js to fetch and parse the PDF
+            */
+            pdfjsLib.getDocument(pdfPath).promise.then(function (pdf) {
+                pdfDoc = pdf;
+                document.getElementById('page-count').textContent = pdf.numPages;
+
+                /*
+                    Render the first page
+                    Initializes the viewer
+                */
+                renderPage(pageNum);
+            }).catch(function (error) {
+                /*
+                    Error handling for PDF loading failures
+                    Shows user-friendly error message
+                */
+                loader.innerHTML = `
+                    <div class="alert alert-danger" role="alert">
+                        <i class="bi bi-exclamation-triangle"></i> Failed to load PDF preview
+                    </div>
+                    <p class="mt-2">You can still <a href="${pdfPath}" download>download the sample PDF</a></p>
+                `;
+                console.error('Error loading PDF:', error);
             });
         });
     </script>
