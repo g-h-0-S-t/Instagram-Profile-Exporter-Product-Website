@@ -368,7 +368,6 @@
 
         .pdf-viewer-wrapper {
             flex: 1;
-            /* min-width: 300px; */
             max-width: 600px;
         }
 
@@ -557,6 +556,42 @@
             background-color: rgba(131, 58, 180, 0.2);
             color: #b085e6;
         }
+
+        /* Quote Section Styles */
+        .quote-section {
+            background-color: #FFFFFF;
+            border-left: 4px solid transparent;
+            border-image: linear-gradient(45deg, #5851DB, #C13584, #FD1D1D, #FCAF45) 1;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .dark-mode .quote-section {
+            background-color: #1C2526;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .quote-text {
+            font-style: italic;
+            font-size: 1.1rem;
+            color: #262626;
+        }
+
+        .dark-mode .quote-text {
+            color: #B0B3B8;
+        }
+
+        .quote-author {
+            font-weight: 600;
+            color: #833AB4;
+            margin-top: 1rem;
+        }
+
+        .dark-mode .quote-author {
+            color: #b085e6;
+        }
     </style>
 </head>
 
@@ -569,12 +604,10 @@
                 <p class="header-lead">Showcase your Instagram content in a professional, eye-catching PDF!</p>
             </div>
             <div class="theme-toggle-container">
-                <!-- <span class="theme-toggle-text">Light</span> -->
                 <label class="theme-toggle-label">
                     <input type="checkbox" id="theme-toggle-checkbox">
                     <span class="theme-slider"></span>
                 </label>
-                <!-- <span class="theme-toggle-text">Dark</span> -->
             </div>
         </div>
     </header>
@@ -631,7 +664,7 @@
         </div>
     </section>
 
-    <!-- Use Cases Section (FIXED) -->
+    <!-- Use Cases Section -->
     <section class="py-5 bg-light-section">
         <div class="container">
             <h2 class="fw-bold text-center mb-5">Who Uses Instagram Profile Exporter?</h2>
@@ -717,10 +750,7 @@
         </div>
     </section>
 
-    <!-- 
-        PDF Viewer Section 
-        UPDATED FOR SIDE-BY-SIDE COMPARISON
-    -->
+    <!-- PDF Viewer Section -->
     <section id="demo" class="py-5">
         <div class="container text-center">
             <h2 class="fw-bold mb-3">See It In Action</h2>
@@ -822,6 +852,25 @@
         </div>
     </section>
 
+    <!-- Quote Section -->
+    <section class="py-5 bg-light-section">
+        <div class="container text-center">
+            <h2 class="fw-bold mb-4">A Personal Touch You Can Trust</h2>
+            <div class="quote-section mx-auto max-600">
+                <blockquote class="quote-text">
+                    "There are many apps, extensions, and services out there offering various Instagram tools, but you
+                    can’t always tell how they handle your data. With my custom built solutions, I create tailored PDFs
+                    from your Instagram account based on your requests, sent directly to me via WhatsApp, email, text,
+                    or in person chats if you're nearby, just like visiting a trusted tailor, barber, cybercafe,
+                    printer, or scanner shop for a personalized touch. Unlike those impersonal apps, I'm your go to
+                    person, always ready to listen, discuss, and craft your experience with that friendly, old school
+                    vibe, ensuring your data is securely discarded after use for a transparent, trustworthy service."
+                </blockquote>
+                <p class="quote-author">— Cyberbatman, Creator of Instagram Profile Exporter</p>
+            </div>
+        </div>
+    </section>
+
     <!-- Note Section -->
     <section class="py-5 bg-danger-subtle">
         <div class="container text-center">
@@ -905,11 +954,15 @@
 
             /*
                 Check saved theme in localStorage
-                Preserves user's theme preference across sessions
+                Set dark mode as default unless light mode is explicitly saved
             */
-            if (localStorage.getItem('theme') === 'dark') {
+            if (localStorage.getItem('theme') !== 'light') {
                 body.addClass('dark-mode');
                 toggleCheckbox.prop('checked', true);
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.removeClass('dark-mode');
+                toggleCheckbox.prop('checked', false);
             }
 
             /*
