@@ -60,6 +60,11 @@
             font-weight: 300;
         }
 
+        .dark-mode .header-lead {
+            color: #FFFFFF;
+            text-shadow: 0 0 8px rgba(131, 58, 180, 0.5);
+        }
+
         /* 
             Button styles with hover effects
         */
@@ -77,20 +82,77 @@
         }
 
         /* 
-            Theme toggle button styles
+            Theme toggle button styles - UPDATED TO LOOK LIKE A TOGGLE SWITCH
         */
-        .theme-toggle {
-            color: #FFFFFF;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            padding: 0.5rem;
-            transition: color 0.3s ease;
+        .theme-toggle-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .theme-toggle:hover {
-            color: #FCAF45;
-            text-shadow: 0 0 8px rgba(252, 175, 69, 0.7);
+        .theme-toggle-label {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .theme-toggle-label input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .theme-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #2c3e50;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .theme-slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        input:checked+.theme-slider {
+            background-color: #833AB4;
+        }
+
+        input:checked+.theme-slider:before {
+            transform: translateX(26px);
+            content: "🌙";
+        }
+
+        .theme-slider:before {
+            content: "☀️";
+        }
+
+        .theme-toggle-text {
+            font-size: 14px;
+            font-weight: 500;
+            color: white;
+            text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .dark-mode .theme-toggle-text {
+            color: #FFFFFF;
         }
 
         /* 
@@ -101,6 +163,7 @@
             background-color: #FFFFFF;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
             border: 1px solid transparent;
+            border-radius: 8px;
         }
 
         .feature-card:hover {
@@ -117,6 +180,7 @@
 
         .dark-mode .feature-card:hover {
             box-shadow: 0 0 12px rgba(131, 58, 180, 0.7);
+            border-color: #833AB4;
         }
 
         /* 
@@ -132,8 +196,7 @@
 
         .dark-mode h1,
         .dark-mode h2,
-        .dark-mode h3,
-        .dark-mode .header-lead {
+        .dark-mode h3 {
             color: #FFFFFF;
             text-shadow: 0 0 8px rgba(131, 58, 180, 0.5);
         }
@@ -294,22 +357,47 @@
         }
 
         /* 
-            PDF Viewer Styles
-            Container for the PDF viewer with controls
+            PDF Viewer Styles - UPDATED FOR SIDE-BY-SIDE VIEW
         */
+        .pdf-comparison-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .pdf-viewer-wrapper {
+            flex: 1;
+            min-width: 300px;
+            max-width: 600px;
+        }
+
         .pdf-viewer-container {
-            max-width: 800px;
-            margin: 0 auto;
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             background-color: white;
             position: relative;
+            height: 100%;
         }
 
         .dark-mode .pdf-viewer-container {
             background-color: #1C2526;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .pdf-viewer-label {
+            text-align: center;
+            font-weight: 600;
+            margin-bottom: 10px;
+            padding: 5px 10px;
+            background: rgba(131, 58, 180, 0.1);
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .dark-mode .pdf-viewer-label {
+            background: rgba(131, 58, 180, 0.2);
         }
 
         /* 
@@ -391,6 +479,84 @@
             width: 3rem;
             height: 3rem;
         }
+
+        /* 
+            Use Cases Section Styles 
+            Fixed to match the existing design
+        */
+        .use-case-card {
+            height: 100%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: #FFFFFF;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border: 1px solid transparent;
+            border-radius: 8px;
+            overflow: hidden;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .dark-mode .use-case-card {
+            background-color: #1C2526;
+            border: 1px solid #2C2F33;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .use-case-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 12px rgba(131, 58, 180, 0.5);
+            border-color: #833AB4;
+        }
+
+        .dark-mode .use-case-card:hover {
+            box-shadow: 0 0 12px rgba(131, 58, 180, 0.7);
+        }
+
+        .use-case-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #833AB4;
+        }
+
+        .dark-mode .use-case-icon {
+            color: #b085e6;
+        }
+
+        .use-case-title {
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 1.25rem;
+            color: #262626;
+        }
+
+        .dark-mode .use-case-title {
+            color: #FFFFFF;
+        }
+
+        .use-case-description {
+            color: #8E8E8E;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .dark-mode .use-case-description {
+            color: #B0B3B8;
+        }
+
+        .use-case-tag {
+            display: inline-block;
+            padding: 3px 12px;
+            background-color: rgba(131, 58, 180, 0.1);
+            color: #833AB4;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .dark-mode .use-case-tag {
+            background-color: rgba(131, 58, 180, 0.2);
+            color: #b085e6;
+        }
     </style>
 </head>
 
@@ -402,9 +568,14 @@
                 <h1 class="display-4 fw-bold mb-3">Transform Your Instagram with Instagram Profile Exporter</h1>
                 <p class="header-lead">Showcase your Instagram content in a professional, eye-catching PDF!</p>
             </div>
-            <button class="theme-toggle" id="theme-toggle" title="Toggle Theme">
-                <i class="bi bi-sun-fill"></i>
-            </button>
+            <div class="theme-toggle-container">
+                <!-- <span class="theme-toggle-text">Light</span> -->
+                <label class="theme-toggle-label">
+                    <input type="checkbox" id="theme-toggle-checkbox">
+                    <span class="theme-slider"></span>
+                </label>
+                <!-- <span class="theme-toggle-text">Dark</span> -->
+            </div>
         </div>
     </header>
 
@@ -427,7 +598,7 @@
             <div class="row g-4">
                 <!-- Feature Cards -->
                 <div class="col-12 col-md-4 col-sm-6">
-                    <div class="card feature-card h-100 shadow-sm">
+                    <div class="card feature-card h-100">
                         <div class="card-body text-center">
                             <h3 class="card-title fw-semibold mb-3">Affordable</h3>
                             <p class="card-text text-muted">Only ₹1 per second – you control the cost!</p>
@@ -435,7 +606,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-4 col-sm-6">
-                    <div class="card feature-card h-100 shadow-sm">
+                    <div class="card feature-card h-100">
                         <div class="card-body text-center">
                             <h3 class="card-title fw-semibold mb-3">Lightning-Fast</h3>
                             <p class="card-text text-muted">Processes ~2 images per second for quick results.</p>
@@ -443,7 +614,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-4 col-sm-12">
-                    <div class="card feature-card h-100 shadow-sm">
+                    <div class="card feature-card h-100">
                         <div class="card-body text-center">
                             <h3 class="card-title fw-semibold mb-3">Tailored to You</h3>
                             <p class="card-text text-muted">Extract an entire public profile or select a portion based
@@ -459,51 +630,190 @@
         </div>
     </section>
 
+    <!-- Use Cases Section (FIXED) -->
+    <section class="py-5 bg-light-section">
+        <div class="container">
+            <h2 class="fw-bold text-center mb-5">Who Uses Instagram Profile Exporter?</h2>
+            <div class="row g-4">
+                <!-- Portfolio Card -->
+                <div class="col-12 col-md-4 col-sm-6">
+                    <div class="use-case-card h-100">
+                        <i class="bi bi-person-bounding-box use-case-icon"></i>
+                        <h3 class="use-case-title">Models & Actors</h3>
+                        <p class="use-case-description">
+                            Create professional portfolios to share with modeling agencies and casting directors.
+                            Showcase your best work in a polished, printable format that stands out.
+                        </p>
+                        <span class="use-case-tag">Portfolio Creation</span>
+                    </div>
+                </div>
+
+                <!-- Police & Forensics Card -->
+                <div class="col-12 col-md-4 col-sm-6">
+                    <div class="use-case-card h-100">
+                        <i class="bi bi-shield-check use-case-icon"></i>
+                        <h3 class="use-case-title">Law Enforcement</h3>
+                        <p class="use-case-description">
+                            For timeline analysis and digital forensics. Export and preserve social media evidence
+                            in court-admissible PDF format with timestamps intact.
+                        </p>
+                        <span class="use-case-tag">Digital Forensics</span>
+                    </div>
+                </div>
+
+                <!-- Students Card -->
+                <div class="col-12 col-md-4 col-sm-6">
+                    <div class="use-case-card h-100">
+                        <i class="bi bi-journal-bookmark use-case-icon"></i>
+                        <h3 class="use-case-title">Students & Educators</h3>
+                        <p class="use-case-description">
+                            Compile educational content shared on Instagram into organized PDF notes. Perfect for
+                            study materials, lecture summaries, and reference documents.
+                        </p>
+                        <span class="use-case-tag">Educational Resources</span>
+                    </div>
+                </div>
+
+                <!-- Gifting Card -->
+                <div class="col-12 col-md-4 col-sm-6">
+                    <div class="use-case-card h-100">
+                        <i class="bi bi-gift use-case-icon"></i>
+                        <h3 class="use-case-title">Personal Gifting</h3>
+                        <p class="use-case-description">
+                            Create custom photo albums for loved ones. Preserve memories from anniversaries,
+                            vacations, and special moments in a beautiful keepsake format.
+                        </p>
+                        <span class="use-case-tag">Memory Preservation</span>
+                    </div>
+                </div>
+
+                <!-- Content Creators Card -->
+                <div class="col-12 col-md-4 col-sm-6">
+                    <div class="use-case-card h-100">
+                        <i class="bi bi-stars use-case-icon"></i>
+                        <h3 class="use-case-title">Content Creators</h3>
+                        <p class="use-case-description">
+                            Archive your content strategy, track visual evolution, and create media kits for
+                            brand collaborations. Showcase your best content in professional presentations.
+                        </p>
+                        <span class="use-case-tag">Media Kits</span>
+                    </div>
+                </div>
+
+                <!-- General Card -->
+                <div class="col-12 col-md-4 col-sm-6">
+                    <div class="use-case-card h-100">
+                        <i class="bi bi-three-dots use-case-icon"></i>
+                        <h3 class="use-case-title">And Many More</h3>
+                        <p class="use-case-description">
+                            Journalists documenting social trends, marketers analyzing competitors, historians
+                            preserving digital culture, and anyone who values their Instagram content.
+                        </p>
+                        <span class="use-case-tag">Versatile Tool</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- 
         PDF Viewer Section 
-        Added to showcase the generated PDF
+        UPDATED FOR SIDE-BY-SIDE COMPARISON
     -->
-    <section class="py-5 bg-light-section">
+    <section class="py-5">
         <div class="container text-center">
             <h2 class="fw-bold mb-3">See It In Action</h2>
             <p class="lead mb-4 mx-auto max-600">
-                Preview a sample PDF generated by Instagram Profile Exporter
+                Compare the two caption options side by side
             </p>
 
-            <div class="pdf-viewer-container">
-                <div class="pdf-controls">
-                    <button class="btn btn-sm btn-outline-secondary" id="prev-page">
-                        <i class="bi bi-arrow-left"></i> Prev
-                    </button>
-                    <span class="mx-2">
-                        Page <span id="page-num">1</span> of <span id="page-count">...</span>
-                    </span>
-                    <button class="btn btn-sm btn-outline-secondary" id="next-page">
-                        Next <i class="bi bi-arrow-right"></i>
-                    </button>
-                    <button class="btn btn-sm btn-outline-secondary ms-2" id="zoom-out">
-                        <i class="bi bi-zoom-out"></i>
-                    </button>
-                    <button class="btn btn-sm btn-outline-secondary" id="zoom-in">
-                        <i class="bi bi-zoom-in"></i>
-                    </button>
-                    <button class="btn btn-sm btn-outline-primary ms-2" id="download-pdf">
-                        <i class="bi bi-download"></i> Download
-                    </button>
-                </div>
-
-                <div class="pdf-viewer">
-                    <div class="pdf-loader" id="pdf-loader">
-                        <div class="spinner-border text-primary" role="status">
-                            <span class="visually-hidden">Loading...</span>
+            <div class="pdf-comparison-container">
+                <!-- Viewer 1: With Captions -->
+                <div class="pdf-viewer-wrapper">
+                    <div class="pdf-viewer-label">With Captions</div>
+                    <div class="pdf-viewer-container">
+                        <div class="pdf-controls">
+                            <button class="btn btn-sm btn-outline-secondary prev-page" data-viewer="1">
+                                <i class="bi bi-arrow-left"></i> Prev
+                            </button>
+                            <span class="mx-2">
+                                Page <span class="page-num" data-viewer="1">1</span> of <span class="page-count"
+                                    data-viewer="1">...</span>
+                            </span>
+                            <button class="btn btn-sm btn-outline-secondary next-page" data-viewer="1">
+                                Next <i class="bi bi-arrow-right"></i>
+                            </button>
+                            <button type="button" title="Zoom Out"
+                                class="btn btn-sm btn-outline-secondary ms-2 zoom-out" data-viewer="1">
+                                <i class="bi bi-zoom-out"></i>
+                            </button>
+                            <button type="button" title="Zoom In" class="btn btn-sm btn-outline-secondary zoom-in"
+                                data-viewer="1">
+                                <i class="bi bi-zoom-in"></i>
+                            </button>
+                            <button class="btn btn-sm btn-outline-primary ms-2 download-pdf" data-pdf="demo1.pdf">
+                                <i class="bi bi-download"></i> Download
+                            </button>
                         </div>
-                        <p class="mt-3">Loading PDF preview...</p>
+
+                        <div class="pdf-viewer">
+                            <div class="pdf-loader" id="pdf-loader1">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                <p class="mt-3">Loading PDF preview...</p>
+                            </div>
+                            <canvas class="pdf-render" data-viewer="1"></canvas>
+                        </div>
+
+                        <div class="pdf-status">
+                            <span class="pdf-title">demo1.pdf</span>
+                        </div>
                     </div>
-                    <canvas id="pdf-render"></canvas>
                 </div>
 
-                <div class="pdf-status">
-                    <span id="pdf-title">Sample_Instagram_Export.pdf</span>
+                <!-- Viewer 2: Without Captions -->
+                <div class="pdf-viewer-wrapper">
+                    <div class="pdf-viewer-label">Without Captions</div>
+                    <div class="pdf-viewer-container">
+                        <div class="pdf-controls">
+                            <button class="btn btn-sm btn-outline-secondary prev-page" data-viewer="2">
+                                <i class="bi bi-arrow-left"></i> Prev
+                            </button>
+                            <span class="mx-2">
+                                Page <span class="page-num" data-viewer="2">1</span> of <span class="page-count"
+                                    data-viewer="2">...</span>
+                            </span>
+                            <button class="btn btn-sm btn-outline-secondary next-page" data-viewer="2">
+                                Next <i class="bi bi-arrow-right"></i>
+                            </button>
+                            <button type="button" title="Zoom Out"
+                                class="btn btn-sm btn-outline-secondary ms-2 zoom-out" data-viewer="2">
+                                <i class="bi bi-zoom-out"></i>
+                            </button>
+                            <button type="button" title="Zoom In" class="btn btn-sm btn-outline-secondary zoom-in"
+                                data-viewer="2">
+                                <i class="bi bi-zoom-in"></i>
+                            </button>
+                            <button class="btn btn-sm btn-outline-primary ms-2 download-pdf" data-pdf="demo2.pdf">
+                                <i class="bi bi-download"></i> Download
+                            </button>
+                        </div>
+
+                        <div class="pdf-viewer">
+                            <div class="pdf-loader" id="pdf-loader2">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                <p class="mt-3">Loading PDF preview...</p>
+                            </div>
+                            <canvas class="pdf-render" data-viewer="2"></canvas>
+                        </div>
+
+                        <div class="pdf-status">
+                            <span class="pdf-title">demo2.pdf</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -586,9 +896,8 @@
             $('#copyright-year').text(new Date().getFullYear());
 
             // Theme toggle functionality
-            const toggleButton = $('#theme-toggle');
+            const toggleCheckbox = $('#theme-toggle-checkbox');
             const body = $('body');
-            const icon = toggleButton.find('i');
 
             /*
                 Check saved theme in localStorage
@@ -596,199 +905,148 @@
             */
             if (localStorage.getItem('theme') === 'dark') {
                 body.addClass('dark-mode');
-                icon.removeClass('bi-sun-fill').addClass('bi-moon-stars-fill');
+                toggleCheckbox.prop('checked', true);
             }
 
             /*
-                Toggle theme on click
+                Toggle theme on change
                 Switches between light and dark mode
             */
-            toggleButton.click(function () {
+            toggleCheckbox.change(function () {
                 body.toggleClass('dark-mode');
                 if (body.hasClass('dark-mode')) {
-                    icon.removeClass('bi-sun-fill').addClass('bi-moon-stars-fill');
                     localStorage.setItem('theme', 'dark');
                 } else {
-                    icon.removeClass('bi-moon-stars-fill').addClass('bi-sun-fill');
                     localStorage.setItem('theme', 'light');
                 }
             });
 
             /*
                 PDF Viewer Functionality
-                Uses PDF.js to render PDF documents in the browser
+                Handles both viewers in a reusable way
             */
 
-            /*
-                IMPORTANT: 
-                Replace this URL with the actual path to your PDF file
-                This can be either:
-                  - Relative path: 'sample.pdf'
-                  - Absolute path: '/path/to/sample.pdf'
-                  - Full URL: 'https://example.com/sample.pdf' (requires CORS)
-            */
-            const pdfPath = './foodblog.pdf';
+            // Initialize PDF viewers
+            const initializePDFViewer = (viewerId, pdfPath) => {
+                let pdfDoc = null,
+                    pageNum = 1,
+                    pageRendering = false,
+                    pageNumPending = null,
+                    scale = 1.2;
 
-            /*
-                PDF viewer variables
-                Maintains state of the PDF document
-            */
-            let pdfDoc = null,
-                pageNum = 1,
-                pageRendering = false,
-                pageNumPending = null,
-                scale = 1.2;
+                // Canvas setup
+                const canvas = $(`.pdf-render[data-viewer="${viewerId}"]`)[0];
+                const ctx = canvas.getContext('2d');
+                const loader = $(`#pdf-loader${viewerId}`)[0];
 
-            /*
-                Canvas setup
-                Used for rendering PDF pages
-            */
-            const canvas = document.getElementById('pdf-render');
-            const ctx = canvas.getContext('2d');
-            const loader = document.getElementById('pdf-loader');
+                // Render a specific page of the PDF
+                function renderPage(num) {
+                    pageRendering = true;
 
-            /*
-                Render a specific page of the PDF
-                num: Page number to render (1-indexed)
-            */
-            function renderPage(num) {
-                pageRendering = true;
+                    // Show loader while rendering
+                    loader.style.display = 'flex';
+                    canvas.style.display = 'none';
 
-                // Show loader while rendering
-                loader.style.display = 'flex';
-                canvas.style.display = 'none';
+                    // Get the PDF page and render it
+                    pdfDoc.getPage(num).then(function (page) {
+                        const viewport = page.getViewport({ scale: scale });
+                        canvas.height = viewport.height;
+                        canvas.width = viewport.width;
 
-                /*
-                    Get the PDF page and render it
-                    Uses PDF.js API to get page and render to canvas
-                */
-                pdfDoc.getPage(num).then(function (page) {
-                    const viewport = page.getViewport({ scale: scale });
-                    canvas.height = viewport.height;
-                    canvas.width = viewport.width;
+                        // Render context for the PDF page
+                        const renderContext = {
+                            canvasContext: ctx,
+                            viewport: viewport
+                        };
 
-                    // Render context for the PDF page
-                    const renderContext = {
-                        canvasContext: ctx,
-                        viewport: viewport
-                    };
+                        const renderTask = page.render(renderContext);
 
-                    const renderTask = page.render(renderContext);
+                        // Handle rendering completion
+                        renderTask.promise.then(function () {
+                            pageRendering = false;
 
-                    /*
-                        Handle rendering completion
-                        Updates UI after page is rendered
-                    */
-                    renderTask.promise.then(function () {
-                        pageRendering = false;
+                            // Hide loader and show canvas
+                            loader.style.display = 'none';
+                            canvas.style.display = 'block';
 
-                        // Hide loader and show canvas
-                        loader.style.display = 'none';
-                        canvas.style.display = 'block';
+                            // Update page counters
+                            $(`.page-num[data-viewer="${viewerId}"]`).text(num);
 
-                        // Update page counters
-                        document.getElementById('page-num').textContent = num;
-
-                        // Enable/disable navigation buttons
-                        document.getElementById('prev-page').disabled = num <= 1;
-                        document.getElementById('next-page').disabled = num >= pdfDoc.numPages;
+                            // Enable/disable navigation buttons
+                            $(`.prev-page[data-viewer="${viewerId}"]`).prop('disabled', num <= 1);
+                            $(`.next-page[data-viewer="${viewerId}"]`).prop('disabled', num >= pdfDoc.numPages);
+                        });
                     });
+
+                    // Update page number display immediately
+                    $(`.page-num[data-viewer="${viewerId}"]`).text(num);
+                }
+
+                // Queue rendering of a new page
+                function queueRenderPage(num) {
+                    if (pageRendering) {
+                        pageNumPending = num;
+                    } else {
+                        renderPage(num);
+                    }
+                }
+
+                // Navigation handlers
+                $(`.prev-page[data-viewer="${viewerId}"]`).on('click', function () {
+                    if (pageNum <= 1) return;
+                    pageNum--;
+                    queueRenderPage(pageNum);
                 });
 
-                // Update page number display immediately
-                document.getElementById('page-num').textContent = num;
-            }
-
-            /*
-                Queue rendering of a new page
-                Handles concurrent rendering requests
-            */
-            function queueRenderPage(num) {
-                if (pageRendering) {
-                    pageNumPending = num;
-                } else {
-                    renderPage(num);
-                }
-            }
-
-            /*
-                Previous page button handler
-                Decrements page number and renders previous page
-            */
-            document.getElementById('prev-page').addEventListener('click', function () {
-                if (pageNum <= 1) return;
-                pageNum--;
-                queueRenderPage(pageNum);
-            });
-
-            /*
-                Next page button handler
-                Increments page number and renders next page
-            */
-            document.getElementById('next-page').addEventListener('click', function () {
-                if (pageNum >= pdfDoc.numPages) return;
-                pageNum++;
-                queueRenderPage(pageNum);
-            });
-
-            /*
-                Zoom in button handler
-                Increases scale and re-renders current page
-            */
-            document.getElementById('zoom-in').addEventListener('click', function () {
-                scale += 0.1;
-                queueRenderPage(pageNum);
-            });
-
-            /*
-                Zoom out button handler
-                Decreases scale and re-renders current page
-            */
-            document.getElementById('zoom-out').addEventListener('click', function () {
-                if (scale > 0.5) {
-                    scale -= 0.1;
+                $(`.next-page[data-viewer="${viewerId}"]`).on('click', function () {
+                    if (pageNum >= pdfDoc.numPages) return;
+                    pageNum++;
                     queueRenderPage(pageNum);
-                }
-            });
+                });
 
-            /*
-                Download button handler
-                Creates a temporary link to download the PDF
-            */
-            document.getElementById('download-pdf').addEventListener('click', function () {
+                // Zoom handlers
+                $(`.zoom-in[data-viewer="${viewerId}"]`).on('click', function () {
+                    scale += 0.1;
+                    queueRenderPage(pageNum);
+                });
+
+                $(`.zoom-out[data-viewer="${viewerId}"]`).on('click', function () {
+                    if (scale > 0.5) {
+                        scale -= 0.1;
+                        queueRenderPage(pageNum);
+                    }
+                });
+
+                // Load the PDF document
+                pdfjsLib.getDocument(pdfPath).promise.then(function (pdf) {
+                    pdfDoc = pdf;
+                    $(`.page-count[data-viewer="${viewerId}"]`).text(pdf.numPages);
+                    renderPage(pageNum);
+                }).catch(function (error) {
+                    // Error handling
+                    loader.innerHTML = `
+                        <div class="alert alert-danger" role="alert">
+                            <i class="bi bi-exclamation-triangle"></i> Failed to load PDF preview
+                        </div>
+                        <p class="mt-2">You can still <a href="${pdfPath}" download>download the sample PDF</a></p>
+                    `;
+                    console.error('Error loading PDF:', error);
+                });
+            };
+
+            // Initialize both PDF viewers
+            initializePDFViewer(1, './demo1.pdf'); // With captions
+            initializePDFViewer(2, './demo2.pdf'); // Without captions
+
+            // Download button handler
+            $('.download-pdf').on('click', function () {
+                const pdfPath = $(this).data('pdf');
                 const link = document.createElement('a');
                 link.href = pdfPath;
-                link.download = 'Sample_Instagram_Export.pdf';
+                link.download = pdfPath;
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
-            });
-
-            /*
-                Load the PDF document
-                Uses PDF.js to fetch and parse the PDF
-            */
-            pdfjsLib.getDocument(pdfPath).promise.then(function (pdf) {
-                pdfDoc = pdf;
-                document.getElementById('page-count').textContent = pdf.numPages;
-
-                /*
-                    Render the first page
-                    Initializes the viewer
-                */
-                renderPage(pageNum);
-            }).catch(function (error) {
-                /*
-                    Error handling for PDF loading failures
-                    Shows user-friendly error message
-                */
-                loader.innerHTML = `
-                    <div class="alert alert-danger" role="alert">
-                        <i class="bi bi-exclamation-triangle"></i> Failed to load PDF preview
-                    </div>
-                    <p class="mt-2">You can still <a href="${pdfPath}" download>download the sample PDF</a></p>
-                `;
-                console.error('Error loading PDF:', error);
             });
         });
     </script>
