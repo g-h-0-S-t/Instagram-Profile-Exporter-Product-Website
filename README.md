@@ -33,7 +33,7 @@ I'm thrilled to introduce **insta2pdf** - your solution for transforming public 
 <https://g-h-0-s-t.github.io/Privacy_Policy_For_InstaProfileToPDF_Chrome_Plugin/>  
 
 ## **🌐 Website and contact:**  
-<https://g-h-0-s-t.github.io/Instagram-Profile-Exporter-Product-Website/>  
+<https://insta2pdf.netlify.app/>  
 
 #InstagramExport #PDFPortfolio #ContentCreator #DigitalArchiving #InstagramTool #SocialMediaService  
 #InstagramDownloader #SocialMediaArchiving #ContentPreservation #PDFCreator #InstagramBackup  
