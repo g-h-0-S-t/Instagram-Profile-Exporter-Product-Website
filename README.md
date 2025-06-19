@@ -1,6 +1,6 @@
 # Hi all! 👋
 
-I'm thrilled to introduce **Instagram Profile Exporter** - your solution for transforming public Instagram profiles into beautifully formatted PDF portfolios!
+I'm thrilled to introduce **insta2pdf** - your solution for transforming public Instagram profiles into beautifully formatted PDF portfolios!
 
 ## **Here's what I deliver:**  
 📄 **Professional PDF conversion** of Instagram profiles  

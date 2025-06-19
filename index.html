@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instagram Profile Exporter</title>
+    <title>insta2pdf</title>
     <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
     <!-- 
         Bootstrap CSS 
@@ -46,11 +46,90 @@
         }
 
         /* 
+            Announcement Panel Styles
+            Sleek bar at the top for announcements
+        */
+        .announcement-panel {
+            background: linear-gradient(45deg, #5851DB, #C13584, #FD1D1D, #FCAF45);
+            color: #FFFFFF;
+            padding: 10px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            font-size: 0.95rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .announcement-panel.hidden {
+            transform: translateY(-100%);
+        }
+
+        .announcement-panel .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .announcement-content {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .announcement-logo {
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+
+        .announcement-logo img {
+            height: 20px;
+            vertical-align: middle;
+        }
+
+        .announcement-label {
+            font-weight: 600;
+            margin-right: 5px;
+        }
+
+        .announcement-panel a {
+            color: #FFFFFF;
+            text-decoration: underline;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .announcement-panel a:hover {
+            color: #FCAF45;
+            text-shadow: 0 0 6px rgba(252, 175, 69, 0.7);
+        }
+
+        .announcement-panel .close-btn {
+            background: none;
+            border: none;
+            color: #FFFFFF;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .announcement-panel .close-btn:hover {
+            color: #FCAF45;
+        }
+
+        /* 
             Header styles with Instagram gradient
         */
         .header-bg {
             background: linear-gradient(45deg, #5851DB, #C13584, #FD1D1D, #FCAF45);
             color: #FFFFFF;
+            transition: margin-top 0.3s ease;
+        }
+
+        .header-bg.with-announcement {
+            margin-top: 50px;
         }
 
         .header-lead {
@@ -82,7 +161,7 @@
         }
 
         /* 
-            Theme toggle button styles - UPDATED TO LOOK LIKE A TOGGLE SWITCH
+            Theme toggle button styles
         */
         .theme-toggle-container {
             display: flex;
@@ -115,7 +194,7 @@
             border-radius: 34px;
         }
 
-        .theme-slider:before {
+        .theme-slider::before {
             position: absolute;
             content: "";
             height: 26px;
@@ -135,12 +214,12 @@
             background-color: #833AB4;
         }
 
-        input:checked+.theme-slider:before {
+        input:checked+.theme-slider::before {
             transform: translateX(26px);
             content: "🌙";
         }
 
-        .theme-slider:before {
+        .theme-slider::before {
             content: "☀️";
         }
 
@@ -331,6 +410,24 @@
                 padding-left: 1rem;
                 padding-right: 1rem;
             }
+
+            .announcement-panel {
+                font-size: 0.85rem;
+                padding: 8px 0;
+            }
+
+            .announcement-panel .container {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .announcement-logo {
+                font-size: 1rem;
+            }
+
+            .announcement-logo img {
+                height: 16px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -350,6 +447,10 @@
             .theme-toggle {
                 font-size: 1rem;
             }
+
+            .announcement-panel {
+                font-size: 0.75rem;
+            }
         }
 
         .max-600 {
@@ -357,7 +458,7 @@
         }
 
         /* 
-            PDF Viewer Styles - UPDATED FOR SIDE-BY-SIDE VIEW
+            PDF Viewer Styles
         */
         .pdf-comparison-container {
             display: flex;
@@ -480,8 +581,7 @@
         }
 
         /* 
-            Use Cases Section Styles 
-            Fixed to match the existing design
+            Use Cases Section Styles
         */
         .use-case-card {
             height: 100%;
@@ -596,11 +696,23 @@
 </head>
 
 <body>
+    <!-- Announcement Panel -->
+    <div class="announcement-panel hidden" id="announcement-panel">
+        <div class="container">
+            <span class="announcement-content">
+                <span class="announcement-logo" id="announcement-logo"></span>
+                <span class="announcement-label" id="announcement-label"></span>
+                <span id="announcement-message"></span>
+            </span>
+            <button class="close-btn" id="close-announcement" aria-label="Close announcement">×</button>
+        </div>
+    </div>
+
     <!-- Header Section -->
     <header class="header-bg text-white py-5">
         <div class="container d-flex justify-content-between align-items-center">
             <div class="text-center flex-grow-1">
-                <h1 class="display-4 fw-bold mb-3">Transform Your Instagram with Instagram Profile Exporter</h1>
+                <h1 class="display-4 fw-bold mb-3">Transform Your Instagram with insta2pdf</h1>
                 <p class="header-lead">Showcase your Instagram content in a professional, eye-catching PDF!</p>
             </div>
             <div class="theme-toggle-container">
@@ -617,7 +729,7 @@
         <div class="container text-center">
             <h2 class="fw-bold mb-4">Create Your Visual Masterpiece</h2>
             <p class="lead mb-5 mx-auto max-600">
-                Whether you're a creative, business, or just want to preserve memories, Instagram Profile Exporter
+                Whether you're a creative, business, or just want to preserve memories, insta2pdf
                 transforms your public Instagram posts into a sleek, beautifully formatted PDF.
             </p>
             <a href="#contact" class="btn btn-primary btn-lg">Get Started Now</a>
@@ -667,7 +779,7 @@
     <!-- Use Cases Section -->
     <section class="py-5 bg-light-section">
         <div class="container">
-            <h2 class="fw-bold text-center mb-5">Who Uses Instagram Profile Exporter?</h2>
+            <h2 class="fw-bold text-center mb-5">Who Uses insta2pdf?</h2>
             <div class="row g-4">
                 <!-- Portfolio Card -->
                 <div class="col-12 col-md-4 col-sm-6">
@@ -866,7 +978,7 @@
                     person, always ready to listen, discuss, and craft your experience with that friendly, old school
                     vibe, ensuring your data is securely discarded after use for a transparent, trustworthy service."
                 </blockquote>
-                <p class="quote-author">— Cyberbatman, Creator of Instagram Profile Exporter</p>
+                <p class="quote-author">— Creator of insta2pdf</p>
             </div>
         </div>
     </section>
@@ -887,7 +999,7 @@
             <p class="lead mb-4 mx-auto max-600">
                 Contact me today to get started!
                 <br>
-                Let’s turn your feed into a professional masterpiece with Instagram Profile Exporter.
+                Let’s turn your feed into a professional masterpiece with insta2pdf.
             </p>
             <div class="mb-4">
                 <a rel="noopener" href="https://wa.me/919845403046" target="_blank" class="social-icon"
@@ -903,7 +1015,7 @@
     <!-- Footer -->
     <footer class="text-white py-4">
         <div class="container text-center">
-            <p class="mb-1">© <span id="copyright-year"></span> Instagram Profile Exporter. All rights reserved.</p>
+            <p class="mb-1">© <span id="copyright-year"></span> insta2pdf. All rights reserved.</p>
             <p>
                 <a rel="noopener" href="https://g-h-0-s-t.github.io/Privacy_Policy_For_InstaProfileToPDF_Chrome_Plugin/"
                     target="_blank">Privacy Policy</a> |
@@ -942,9 +1054,64 @@
     <script>
         /*
             Main JavaScript functionality
-            Includes theme toggling and PDF viewer implementation
+            Includes announcement panel, theme toggling, and PDF viewer implementation
         */
         $(document).ready(function () {
+            // Announcement Panel Configuration
+            const announcementConfig = {
+                labelText: '<b>Announcement</b>',
+                logo: '📢', // Can be an emoji or image URL
+                message: 'Bookmark the official production site — <a href="https://insta2pdf.netlify.app/" target="_blank" rel="noopener">https://insta2pdf.netlify.app/</a>',
+                dismissible: false,
+                show: true
+            };
+
+            const $announcementPanel = $('#announcement-panel');
+            const $announcementLogo = $('#announcement-logo');
+            const $announcementLabel = $('#announcement-label');
+            const $announcementMessage = $('#announcement-message');
+            const $closeButton = $('#close-announcement');
+            const $header = $('header');
+
+            // Initialize announcement panel
+            function initAnnouncementPanel() {
+                // Set logo (emoji or image)
+                if (announcementConfig.logo.startsWith('http')) {
+                    $announcementLogo.html(`<img src="${announcementConfig.logo}" alt="Announcement Logo">`);
+                } else {
+                    $announcementLogo.text(announcementConfig.logo);
+                }
+
+                // Set label and message
+                $announcementLabel.html(announcementConfig.labelText);
+                $announcementMessage.html(announcementConfig.message);
+
+                // Toggle close button visibility
+                $closeButton.toggle(announcementConfig.dismissible);
+
+                // Determine visibility
+                const isDismissed = localStorage.getItem('announcementDismissed') === 'true';
+                if (announcementConfig.show && (!isDismissed || !announcementConfig.dismissible)) {
+                    $announcementPanel.removeClass('hidden');
+                    $header.addClass('with-announcement');
+                } else {
+                    $announcementPanel.addClass('hidden');
+                    $header.removeClass('with-announcement');
+                }
+            }
+
+            // Close announcement handler
+            if (announcementConfig.dismissible) {
+                $closeButton.on('click', function () {
+                    $announcementPanel.addClass('hidden');
+                    $header.removeClass('with-announcement');
+                    localStorage.setItem('announcementDismissed', 'true');
+                });
+            }
+
+            // Initialize the panel
+            initAnnouncementPanel();
+
             // Set dynamic copyright year
             $('#copyright-year').text(new Date().getFullYear());
 
@@ -982,8 +1149,6 @@
                 PDF Viewer Functionality
                 Handles both viewers in a reusable way
             */
-
-            // Initialize PDF viewers
             const initializePDFViewer = (viewerId, pdfPath) => {
                 let pdfDoc = null,
                     pageNum = 1,
