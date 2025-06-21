@@ -1267,7 +1267,8 @@
 
             // Download button handler
             $('.download-pdf').on('click', function () {
-                const pdfPath = $(this).data('pdf');
+                const pdfName = $(this).data('pdf');
+                const pdfPath = `./PDFs/${pdfName}`;
                 const link = document.createElement('a');
                 link.href = pdfPath;
                 link.download = pdfPath;
