@@ -882,10 +882,11 @@
                             <button class="btn btn-sm btn-outline-secondary prev-page" data-viewer="1">
                                 <i class="bi bi-arrow-left"></i> Prev
                             </button>
-                            <span class="mx-2">
-                                Page <span class="page-num" data-viewer="1">1</span> of <span class="page-count"
-                                    data-viewer="1">...</span>
-                            </span>
+                            <select aria-label="Page Select"
+                                class="page-select form-select form-select-sm d-inline-block w-auto" data-viewer="1">
+                                <!-- Options will be populated dynamically -->
+                            </select>
+                            <span class="mx-2">of <span class="page-count" data-viewer="1">...</span></span>
                             <button class="btn btn-sm btn-outline-secondary next-page" data-viewer="1">
                                 Next <i class="bi bi-arrow-right"></i>
                             </button>
@@ -926,10 +927,11 @@
                             <button class="btn btn-sm btn-outline-secondary prev-page" data-viewer="2">
                                 <i class="bi bi-arrow-left"></i> Prev
                             </button>
-                            <span class="mx-2">
-                                Page <span class="page-num" data-viewer="2">1</span> of <span class="page-count"
-                                    data-viewer="2">...</span>
-                            </span>
+                            <select aria-label="Page Select"
+                                class="page-select form-select form-select-sm d-inline-block w-auto" data-viewer="2">
+                                <!-- Options will be populated dynamically -->
+                            </select>
+                            <span class="mx-2">of <span class="page-count" data-viewer="2">...</span></span>
                             <button class="btn btn-sm btn-outline-secondary next-page" data-viewer="2">
                                 Next <i class="bi bi-arrow-right"></i>
                             </button>
@@ -1180,7 +1182,6 @@
                         canvas.height = viewport.height;
                         canvas.width = viewport.width;
 
-                        // Render context for the PDF page
                         const renderContext = {
                             canvasContext: ctx,
                             viewport: viewport
@@ -1188,25 +1189,17 @@
 
                         const renderTask = page.render(renderContext);
 
-                        // Handle rendering completion
                         renderTask.promise.then(function () {
                             pageRendering = false;
-
-                            // Hide loader and show canvas
                             loader.style.display = 'none';
                             canvas.style.display = 'block';
 
-                            // Update page counters
-                            $(`.page-num[data-viewer="${viewerId}"]`).text(num);
-
-                            // Enable/disable navigation buttons
+                            // Update page controls
                             $(`.prev-page[data-viewer="${viewerId}"]`).prop('disabled', num <= 1);
                             $(`.next-page[data-viewer="${viewerId}"]`).prop('disabled', num >= pdfDoc.numPages);
+                            updatePageSelect(); // Sync dropdown
                         });
                     });
-
-                    // Update page number display immediately
-                    $(`.page-num[data-viewer="${viewerId}"]`).text(num);
                 }
 
                 // Queue rendering of a new page
@@ -1216,6 +1209,11 @@
                     } else {
                         renderPage(num);
                     }
+                }
+
+                // Update dropdown selection
+                function updatePageSelect() {
+                    $(`.page-select[data-viewer="${viewerId}"]`).val(pageNum);
                 }
 
                 // Navigation handlers
@@ -1248,19 +1246,34 @@
                 pdfjsLib.getDocument(pdfPath).promise.then(function (pdf) {
                     pdfDoc = pdf;
                     $(`.page-count[data-viewer="${viewerId}"]`).text(pdf.numPages);
+
+                    // Populate dropdown
+                    const pageSelect = $(`.page-select[data-viewer="${viewerId}"]`);
+                    for (let i = 1; i <= pdf.numPages; i++) {
+                        pageSelect.append(`<option value="${i}">${i}</option>`);
+                    }
+                    pageSelect.val(pageNum); // Set initial page
+
+                    // Handle dropdown change
+                    pageSelect.on('change', function () {
+                        const selectedPage = parseInt($(this).val(), 10);
+                        if (!isNaN(selectedPage) && selectedPage >= 1 && selectedPage <= pdfDoc.numPages) {
+                            pageNum = selectedPage;
+                            queueRenderPage(pageNum);
+                        }
+                    });
+
                     renderPage(pageNum);
                 }).catch(function (error) {
-                    // Error handling
                     loader.innerHTML = `
-                        <div class="alert alert-danger" role="alert">
-                            <i class="bi bi-exclamation-triangle"></i> Failed to load PDF preview
-                        </div>
-                        <p class="mt-2">You can still <a href="${pdfPath}" download>download the sample PDF</a></p>
-                    `;
+            <div class="alert alert-danger" role="alert">
+                <i class="bi bi-exclamation-triangle"></i> Failed to load PDF preview
+            </div>
+            <p class="mt-2">You can still <a href="${pdfPath}" download>download the sample PDF</a></p>
+        `;
                     console.error('Error loading PDF:', error);
                 });
             };
-
             // Initialize both PDF viewers
             initializePDFViewer(1, './PDFs/demo1.pdf'); // With captions
             initializePDFViewer(2, './PDFs/demo2.pdf'); // Without captions
